@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Navbar from '@/app/components/Navbar';
-import FooterPost from '@/app/components/Footer-post';
+import Footer from '@/app/components/Footer';
 import { login } from '@/app/lib/auth';
 import { getUserInfo } from '@/app/lib/user';
 
@@ -64,12 +64,12 @@ export default function LoginPage() {
 
       <button
         onClick={handleLogin}
-        className="w-full bg-indigo-800 text-white font-bold py-2 rounded-lg hover:bg-indigo-700 transition-colors"
+        className="w-full bg-[#5340C6] text-white font-bold py-2 rounded-lg hover:bg-indigo-700 transition-colors"
       >
         ENTRAR
       </button>
     </div>
-    <FooterPost />
+    <Footer />
     </div>
   );
 }

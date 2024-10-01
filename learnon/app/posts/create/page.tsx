@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import Navbar from '../../components/Navbar';
-import FooterPost from '../../components/Footer-post';
+import Footer from '../../components/Footer'
 import { createPost } from '../../lib/posts';
 import { extractUserName } from '../../lib/user';
+import Link from 'next/link';
 
 export default function CreatePostPage() {
   const [title, setTitle] = useState("");
@@ -41,47 +42,51 @@ export default function CreatePostPage() {
   return (
     <div>
     <Navbar />
-    <div className="mx-10 mt-10 p-8 bg-indigo-200 rounded-lg shadow-lg">
-      
-      <h2 className="text-center text-2xl font-bold text-indigo-800 mb-6">CRIAR UM POST</h2>
+    <h2 className="text-2xl font-bold text-indigo-800 m-6">Criar post</h2>
+      <div className="mx-10 mt-10 p-8 bg-[#5340C6] bg-opacity-20 rounded-lg shadow-lg flex flex-col justify-center items-end">
 
-      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {error && (
+          <Link href={'/auth/login'}>
+            <p className="text-red-500 text-center mb-4">Usuário não autenticado, clique para fazer login login</p>
+          </Link>
+        )}
 
-      <div className="mb-4">
-        <label className="block text-indigo-800 font-bold mb-2" htmlFor="title">
-          Título
-        </label>
-        <input
-          id="title"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Título"
-          className="text-indigo-950 w-full px-4 py-2 border rounded-lg bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        />
+        <div className="mb-4 w-full">
+          <label className="block text-indigo-800 font-bold mb-2" htmlFor="title">
+            Título
+          </label>
+          <input
+            id="title"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Título"
+            className="text-indigo-950 w-full px-4 py-2 border rounded-lg bg-[#F0F0F0] focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <div className="mb-6 w-full">
+          <label className="block text-indigo-800 font-bold mb-2" htmlFor="content">
+            Conteúdo
+          </label>
+          <textarea
+            id="content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Conteúdo"
+            className="text-indigo-950 w-full px-4 py-2 border rounded-lg bg-[#F0F0F0] h-[400px] focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+        
+        <button
+          onClick={handleCreatePost}
+          className="w-[200px] bg-[#5340C6] text-white font-bold py-2 rounded-2xl hover:bg-indigo-700 transition-colors"
+        >
+          Publicar
+        </button>
       </div>
-
-      <div className="mb-6">
-        <label className="block text-indigo-800 font-bold mb-2" htmlFor="content">
-          Conteúdo
-        </label>
-        <textarea
-          id="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Conteúdo"
-          className="text-indigo-950 w-full px-4 py-2 border rounded-lg bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        />
-      </div>
-
-      <button
-        onClick={handleCreatePost}
-        className="w-full bg-indigo-800 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Criar
-      </button>
-    </div>
-    <FooterPost />
+    
+    <Footer />
     </div>
   );
 }

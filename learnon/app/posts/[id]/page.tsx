@@ -1,6 +1,6 @@
 import Navbar from '@/app/components/Navbar';
 import { getPost } from '../../lib/posts';
-import FooterPost from '@/app/components/Footer-post';
+import Footer from '@/app/components/Footer';
 
 export default async function PostPage({ params }: { params: { id: string } }) {
   const post = await getPost(params.id);
@@ -27,7 +27,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
           <p className='text-gray-700 mt-4 text-justify'>{post.content}</p>
         </div>
       </div>
-      <FooterPost />
+      <Footer />
     </div>
   );
 }

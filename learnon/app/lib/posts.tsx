@@ -1,10 +1,15 @@
 import { Post, PostForm } from '../types/Post';
 
 export async function getPosts(): Promise<Post[]> {
-  const response = await fetch('http://localhost:3000/posts');
-  const posts = await response.json();
+  try {
+    const response = await fetch('http://localhost:3000/posts');
+    const posts = await response.json();
 
-  return posts.data;
+    return posts.data;
+  } catch (error) {
+    console.error("Erro ao buscar posts:", error); 
+    return [];
+  }
 }
 
 export async function getPost(id: string): Promise<Post> {

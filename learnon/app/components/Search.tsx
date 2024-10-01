@@ -1,10 +1,16 @@
+// Search.tsx
 'use client';
 
 import { useState } from "react";
 import { Post } from "../types/Post";
 import PostCard from "./PostCard";
 
-export default function Search(search: { posts: Post[] }) {
+interface SearchProps {
+  posts: Post[];
+  onDelete: (id: string) => void; // Adicionando a propriedade onDelete
+}
+
+export default function Search({ posts, onDelete }: SearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
@@ -17,16 +23,24 @@ export default function Search(search: { posts: Post[] }) {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <ul className='px-4 text-indigo-900 mt-6'>
-        {search.posts
-          .filter((post: Post) => post.title.toLowerCase().includes(searchTerm) || post.content.toLowerCase().includes(searchTerm))
+      <ul className='px-4 text-indigo-900 mt-6 overflow-y-auto h-[570px]'>
+        {posts
+          .filter((post: Post) => 
+            post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+            post.content.toLowerCase().includes(searchTerm.toLowerCase())
+          )
           .map((post: Post) => (
             <li key={post.id} className='p-2'>
-              <PostCard id={post.id} title={post.title} description={post.content} author={post.author} />
+              <PostCard 
+                id={post.id} 
+                title={post.title} 
+                description={post.content} 
+                author={post.author} 
+                onDelete={onDelete} 
+              />
             </li>
           ))}
       </ul>
     </div>
   );
-  
 }

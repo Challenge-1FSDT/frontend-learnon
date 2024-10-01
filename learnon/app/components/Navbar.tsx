@@ -14,35 +14,47 @@ export default function Navbar() {
 
   if (token) {
     return (
-      <nav className="flex justify-between items-center bg-indigo-950 rounded-b-2xl">
+      <nav className='w-full h-[90px] bg-[#5340C6] rounded-b-2xl pb-2'>
+      <div className="flex justify-between items-center bg-indigo-950 h-full  rounded-b-2xl">
         <div className="text-2xl p-4">
           <Link href="/">
-              <h1 className="text-white">LEARN<b className="text-indigo-600">ON</b></h1>
+            <h1 className="text-white">LEARN<b className="text-indigo-600">ON</b></h1>
           </Link>
         </div>
-        <div className="flex">
-          <div className="p-4">
-          <Link href="/posts/create">
-              <Button auto type="secondary">
-                Criar novo post
-              </Button>
-          </Link>
+        <div className='flex'>
+          <div className="flex p-4">
+            <Link href="/">
+                <Button auto type="secondary">
+                  <span className='hover:text-[#5340C6]'>Home</span>
+                </Button>
+            </Link>
+          </div>
+          <div className="flex p-4">
+            <Link href="/posts/create">
+                <Button auto type="secondary">
+                  <span className='hover:text-[#5340C6]'>Novo post</span>
+                </Button>
+            </Link>
+          </div>
+          <div className="p-4 mr-2">
+          {/* logout */}
+            <Button auto type="secondary" onClick={() => {
+              localStorage.removeItem("token");
+              window.location.href = "/";
+            }}>
+              <span className='hover:text-[#5340C6]'>Sair</span>
+            </Button>
+          </div>
+
         </div>
-      </div>
-      {/* logout */}
-      <div className="p-4">
-        <Button auto type="secondary" onClick={() => {
-          localStorage.removeItem("token");
-          window.location.href = "/";
-        }}>
-          Logout
-        </Button>
       </div>
       </nav>
     );
   } else {
     return (
-      <nav className="flex justify-between items-center bg-indigo-950 rounded-b-2xl">
+      <nav className='w-full h-[90px] bg-[#5340C6] rounded-b-2xl pb-2'>
+        
+      <div className="flex h-full justify-between items-center bg-indigo-950 rounded-b-2xl">
         <div className="text-2xl p-4">
           <Link href="/">
               <h1 className="text-white">LEARN<b className="text-indigo-600">ON</b></h1>
@@ -55,6 +67,7 @@ export default function Navbar() {
             </Button>
           </Link>
         </div>
+      </div>
       </nav>
     );
   }

@@ -6,7 +6,6 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // Lógica para login
     console.log({ userType, email, password });
   };
 
