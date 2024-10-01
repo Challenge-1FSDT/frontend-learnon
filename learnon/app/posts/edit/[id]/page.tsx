@@ -37,7 +37,10 @@ export default function EditPostPage() {
       const token = localStorage.getItem("token");
       if (token) {
         await updatePost(params.id as string, { title, content });
-        // window.location.href = "/";
+        setTimeout(() => {
+          window.location.href = "/";
+        }
+        , 1000);
       } else {
         throw new Error("Token not found");
       }

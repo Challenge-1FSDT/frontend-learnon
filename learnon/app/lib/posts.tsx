@@ -4,7 +4,7 @@ export async function getPosts(): Promise<Post[]> {
   const response = await fetch('http://localhost:3000/posts');
   const posts = await response.json();
 
-  return posts;
+  return posts.data;
 }
 
 export async function getPost(id: string): Promise<Post> {

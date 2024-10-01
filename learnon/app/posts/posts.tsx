@@ -1,10 +1,9 @@
 import Search from "../components/Search";
+import { getPosts } from "../lib/posts";
 
-const data = await fetch('http://localhost:3000/posts')
-const posts = await data.json()
-const allPosts = posts.data;
+export default async function Posts() {
+  const allPosts = await getPosts();
 
-export default function Posts() {
   return (
       <div>
        <h1 className='text-indigo-950 text-2xl p-4 font-bold'>Posts</h1>

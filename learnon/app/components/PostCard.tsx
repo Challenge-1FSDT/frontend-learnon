@@ -1,11 +1,9 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import { deletePost } from '../lib/posts';
-// user from auth
-import { user } from '../lib/auth';
 
 interface PostCardProps {
   id: string;
@@ -14,9 +12,14 @@ interface PostCardProps {
   author: string;
 }
 
-const token = localStorage.getItem("token");
-
 const PostCard: FC<PostCardProps> = ({ id, title, description, author }) => {
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setToken(token ? token : "");
+  }, []);
+
   const router = useRouter();
 
   const handleEdit = () => {
@@ -26,7 +29,7 @@ const PostCard: FC<PostCardProps> = ({ id, title, description, author }) => {
   const handleDelete = () => {
     if (confirm('Tem certeza que deseja deletar esse post?')) {
       deletePost(id).then(() => {
-        router.refresh();
+        window.location.href = '/';
       })
     } else {
       alert('Post não deletado');
