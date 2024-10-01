@@ -14,14 +14,13 @@ interface PostCardProps {
   author: string;
 }
 
+const token = localStorage.getItem("token");
+
 const PostCard: FC<PostCardProps> = ({ id, title, description, author }) => {
   const router = useRouter();
 
-  // user from auth
-
-
   const handleEdit = () => {
-    router.push(`/edit/${id}`);
+    router.push(`posts/edit/${id}`);
   };
 
   const handleDelete = () => {
@@ -45,7 +44,7 @@ const PostCard: FC<PostCardProps> = ({ id, title, description, author }) => {
           {title}
         </h2>
         {
-          user ? (
+          token ? (
             <div className="flex space-x-2">
               <button
                 onClick={handleEdit}

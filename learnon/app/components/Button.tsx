@@ -2,14 +2,20 @@
 
 import React from 'react';
 
-export default function Button({ auto, type, children }) {
+interface ButtonProps {
+  auto: any;
+  type: any;
+  children: any;
+  onClick?: () => void;
+}
+
+
+
+const Button: React.FC<ButtonProps> = ({ auto, type, children, onClick }) => {
   return (
-    <button
-      className={`${
-        auto ? 'w-auto' : 'w-full'
-      } bg-indigo-950 text-white p-2 rounded-lg`}
-    >
+    <button className={`btn ${type} ${auto ? 'auto' : ''}`} onClick={onClick}>
       {children}
     </button>
   );
-}
+};
+export default Button;

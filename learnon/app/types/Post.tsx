@@ -10,16 +10,3 @@ export type PostForm = {
   title: string;
   content: string;
 };
-
-export type PostWithComments = Post & {
-  comments: Comment[];
-};
-
-export type Comment = {
-  id: string;
-  content: string;
-};
-
-export type CommentForm = {
-  content: string;
-};

@@ -1,18 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import { login } from '../../lib/auth';
 import Navbar from '@/app/components/Navbar';
+import FooterPost from '@/app/components/Footer-post';
+import { login } from '@/app/lib/auth';
+import { getUserInfo } from '@/app/lib/user';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async () => {
     try {
       await login(email, password);
+
+      localStorage.setItem('user', JSON.stringify(await getUserInfo()));
     } catch (error) {
-      console.error(error);
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred");
+      }
     }
   };
 
@@ -22,6 +31,8 @@ export default function LoginPage() {
     <div className="w-full max-w-md mx-auto mt-10 p-8 bg-indigo-200 rounded-lg shadow-lg">
       
       <h2 className="text-center text-2xl font-bold text-indigo-800 mb-6">LOGIN</h2>
+
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
       <div className="mb-4">
         <label className="block text-indigo-800 font-bold mb-2" htmlFor="email">
@@ -55,9 +66,10 @@ export default function LoginPage() {
         onClick={handleLogin}
         className="w-full bg-indigo-800 text-white font-bold py-2 rounded-lg hover:bg-indigo-700 transition-colors"
       >
-        LOGIN
+        ENTRAR
       </button>
     </div>
+    <FooterPost />
     </div>
   );
 }

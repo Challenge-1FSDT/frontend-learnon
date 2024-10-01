@@ -1,6 +1,6 @@
-export default function Footer() {
+export default function FooterPost() {
   return (
-    <footer className="bg-indigo-950 text-indigo-300 py-4 mt-8">
+    <footer style={{ position: "absolute", bottom: "0", width: "100%"}} className="bg-indigo-950 text-indigo-300 py-4 mt-8">
       <div className="container mx-auto text-center">
         <p className="text-sm">© 2024 LearnOn. Todos os direitos reservados.</p>
       </div>
