@@ -42,7 +42,7 @@ export async function deletePost(id: string): Promise<void> {
 }
 
 export async function updatePost(id: string, post: PostForm): Promise<void> {
-  await fetch(`/api/posts/${id}`, {
+  await fetch(`http://localhost:3000/posts/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

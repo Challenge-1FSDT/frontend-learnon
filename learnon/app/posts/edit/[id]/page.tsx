@@ -4,26 +4,22 @@ import { useEffect, useState } from 'react';
 import Navbar from '@/app/components/Navbar';
 import FooterPost from '@/app/components/Footer-post';
 import { updatePost, getPost } from '@/app/lib/posts';
-import { extractUserName } from '@/app/lib/user';
-import { useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 export default function EditPostPage() {
-  const searchParams = useSearchParams();
-
+  const params = useParams<{ id: string }>();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [id, setId] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadPost = async () => {
+    const fetchPost = async () => {
       try {
-        const post = await getPost(searchParams.get(id) as string);
+        const post = await getPost(params.id as string);
         setTitle(post.title);
         setContent(post.content);
         setId(post.id);
-        setLoading(false);
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
@@ -31,18 +27,17 @@ export default function EditPostPage() {
           setError("An unknown error occurred");
         }
       }
-    };
+    }
 
-    loadPost();
-  }
-  , []);
+    fetchPost();
+  }, [params.id]);
 
   const handleUpdatePost = async () => {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        await updatePost(searchParams.get(id) as string, { title, content });
-        window.location.href = "/";
+        await updatePost(params.id as string, { title, content });
+        // window.location.href = "/";
       } else {
         throw new Error("Token not found");
       }
