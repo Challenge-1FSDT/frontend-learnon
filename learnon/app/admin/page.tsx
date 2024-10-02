@@ -1,3 +1,5 @@
+'use client';
+
 import { Post } from '../types/Post';
 import { getPosts, deletePost } from '../lib/posts';
 import { useState, useEffect } from 'react';
