@@ -3,9 +3,9 @@
 import React from 'react';
 
 interface ButtonProps {
-  auto: any;
-  type: any;
-  children: any;
+  auto: boolean;
+  type: string;
+  children: React.ReactNode;
   onClick?: () => void;
 }
 

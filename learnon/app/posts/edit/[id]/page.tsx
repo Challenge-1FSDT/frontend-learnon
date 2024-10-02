@@ -10,7 +10,7 @@ export default function EditPostPage() {
   const params = useParams<{ id: string }>();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [id, setId] = useState("");
+  const [_id, setId] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
