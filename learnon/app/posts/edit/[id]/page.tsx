@@ -100,3 +100,4 @@ export default function EditPostPage() {
   );
 }
 
+export const runtime = 'edge';
