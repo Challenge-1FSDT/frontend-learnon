@@ -2,7 +2,7 @@ import { Post, PostForm } from '../types/Post';
 
 export async function getPosts(): Promise<Post[]> {
   try {
-    const response = await fetch('http://localhost:3000/posts');
+    const response = await fetch('https://api.capoteimeu.uno/posts');
     const posts = await response.json();
 
     return posts.data;
@@ -13,7 +13,7 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getPost(id: string): Promise<Post> {
-  const res = await fetch(`http://localhost:3000/posts/${id}`, {
+  const res = await fetch(`https://api.capoteimeu.uno/posts/${id}`, {
     cache: 'no-store',
   });
 
@@ -25,7 +25,7 @@ export async function getPost(id: string): Promise<Post> {
 }
 
 export async function createPost(title: string, content: string, author: string, publish: boolean): Promise<void> {
-  await fetch('http://localhost:3000/posts', {
+  await fetch('https://api.capoteimeu.uno/posts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export async function createPost(title: string, content: string, author: string,
 
 
 export async function deletePost(id: string): Promise<void> {
-  await fetch(`http://localhost:3000/posts/${id}`, {
+  await fetch(`https://api.capoteimeu.uno/posts/${id}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -47,7 +47,7 @@ export async function deletePost(id: string): Promise<void> {
 }
 
 export async function updatePost(id: string, post: PostForm): Promise<void> {
-  await fetch(`http://localhost:3000/posts/${id}`, {
+  await fetch(`https://api.capoteimeu.uno/posts/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export async function updatePost(id: string, post: PostForm): Promise<void> {
 }
 
 export async function searchPosts(query: string): Promise<Post[]> {
-  const res = await fetch(`http://localhost:3000/posts/search?query=${query}`);
+  const res = await fetch(`https://api.capoteimeu.uno/posts/search?query=${query}`);
   const { data } = await res.json();
 
   return data;

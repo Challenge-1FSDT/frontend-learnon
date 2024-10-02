@@ -5,7 +5,7 @@ export const user: User | null = null;
 export async function login(email: string, password: string): Promise<void> {
     const encodedHeader = Buffer.from(`${email}:${password}`).toString("base64");
 
-    const response = await fetch("http://localhost:3000/auth/login", {
+    const response = await fetch("https://api.capoteimeu.uno/auth/login", {
       method: "POST",
       headers: {
         Authorization: `Basic ${encodedHeader}`,
