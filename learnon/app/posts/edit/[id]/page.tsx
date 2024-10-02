@@ -10,8 +10,7 @@ export default function EditPostPage() {
   const params = useParams<{ id: string }>();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  // eslint-ignore-next-line @typescript-eslint/no-unused-vars
-  const [_id, setId] = useState(""); 
+  const [_id, setId] = useState(""); // eslint-ignore-line
   const [error, setError] = useState("");
 
   useEffect(() => {
