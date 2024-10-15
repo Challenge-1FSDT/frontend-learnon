@@ -13,9 +13,7 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getPost(id: string): Promise<Post> {
-  const res = await fetch(`https://api.capoteimeu.uno/posts/${id}`, {
-    cache: 'no-store',
-  });
+  const res = await fetch(`https://api.capoteimeu.uno/posts/${id}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
